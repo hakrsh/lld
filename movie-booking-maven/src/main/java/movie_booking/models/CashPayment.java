@@ -1,7 +1,7 @@
 package movie_booking.models;
 
 public class CashPayment extends Payment {
-    CashPayment(double amount) {
+    public CashPayment(double amount) {
         super(amount);
     }
 }

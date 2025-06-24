@@ -2,7 +2,7 @@ package movie_booking.models;
 
 import lombok.*;
 import java.util.UUID;
-class Person {
+abstract class Person {
     String id = UUID.randomUUID().toString();
     @Getter
     String name;

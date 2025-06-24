@@ -1,5 +1,6 @@
 package movie_booking.services;
 
+import movie_booking.enums.PaymentMethod;
 import movie_booking.models.*;
 import java.util.*;;
 
@@ -12,7 +13,7 @@ public class BookingService {
         this.paymentService = paymentService;
     }
 
-    public Booking bookSeats(Customer customer, ShowTime show, List<Seat> seats) throws Exception {
+    public Booking bookSeats(Customer customer, ShowTime show, List<Seat> seats, PaymentMethod paymentMethod) throws Exception {
         synchronized (this) {
             List<Ticket> tickets = new ArrayList<>();
             double total = 0;
@@ -26,7 +27,7 @@ public class BookingService {
                 tickets.add(new Ticket(seat, show));
                 total += this.pricingStrategy.calculatePrice(seat, show);
             }
-            Payment payment = paymentService.makePayment(total);
+            Payment payment = paymentService.makePayment(paymentMethod, total);
             if (!payment.isSuccess()) {
                 for (Seat seat : seats) {
                     seat.unlock();

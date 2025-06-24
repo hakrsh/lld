@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import movie_booking.enums.*;
 
 @Getter
-public class Payment {
+public abstract class Payment {
     double amount;
     LocalDateTime paidAt = LocalDateTime.now();
     @Setter

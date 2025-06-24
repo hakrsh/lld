@@ -5,7 +5,7 @@ import java.util.*;
 
 import movie_booking.services.*;
 import movie_booking.models.*;
-import movie_booking.enums.SeatType;
+import movie_booking.enums.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -89,7 +89,19 @@ public class Main {
                     System.out.print("Enter your name: ");
                     String name = scanner.nextLine();
                     Customer customer = new Customer(name);
-                    bookingService.bookSeats(customer, show, selectedSeats);
+
+                    System.out.println("Choose payment method:");
+                    System.out.println("1. Card");
+                    System.out.println("2. Cash");
+                    System.out.print("Enter choice: ");
+                    int methodChoice = Integer.parseInt(scanner.nextLine());
+
+                    PaymentMethod method = switch (methodChoice) {
+                        case 1 -> PaymentMethod.CARD;
+                        case 2 -> PaymentMethod.CASH;
+                        default -> throw new IllegalArgumentException("Invalid payment method selected");
+                    };
+                    bookingService.bookSeats(customer, show, selectedSeats, method);
                 } else if (choice == 2) {
                     System.out.println("Bie!");
                     break;
