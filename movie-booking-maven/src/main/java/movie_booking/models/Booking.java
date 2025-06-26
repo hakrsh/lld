@@ -17,4 +17,10 @@ public class Booking {
         this.tickets = tickets;
         this.payment = payment;
     }
+
+    public void cancel() {
+        for (Ticket ticket : tickets) {
+            ticket.cancel();
+        }
+    }
 }

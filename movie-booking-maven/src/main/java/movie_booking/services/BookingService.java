@@ -39,7 +39,17 @@ public class BookingService {
             }
             Booking booking = new Booking(customer, show, tickets, payment);
             System.out.println("Booking is confirmed for " + customer.getName() + " with total amount: " + total);
+            show.addBooking(booking);
             return booking;
+        }
+    }
+
+    public boolean cancelBooking(Booking boooking, boolean refund) {
+        boooking.cancel();
+        if(refund) {
+
+        } else {
+
         }
     }
 }

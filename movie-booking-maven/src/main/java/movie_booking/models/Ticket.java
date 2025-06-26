@@ -18,4 +18,9 @@ public class Ticket {
         this.status = TicketStatus.BOOKED;
         this.seat.book();
     }
+
+    public void cancel() {
+        this.status = TicketStatus.CANCELED;
+        this.seat.unlock();
+    }
 }
